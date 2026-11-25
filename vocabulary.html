@@ -207,7 +207,7 @@ function renderWords(){
   const c=+$('#cat').value,l=+$('#les').value;
   const list=W.filter(w=>(c<0||w.c===c)&&(!l||w.l.includes(l))&&matchQ(w));
   $('#wc').textContent=`${list.length} words · tap a word for its reading · 注 for meaning`;
-  $('#wl').innerHTML=list.slice(0,1500).map(w=>`<div class="row" data-i="${w.i}"><button class="pb" data-p="${w.i}">▶</button><div class="body"><span class="wd">${html(w.w)}</span><span class="tag">${esc(w.p)}</span><a class="nt" href="#">注</a>${w.ms?`<div class="ms">${html(w.ms)}</div>`:''}<div class="nb">${esc(w.m)} · ${lesTxt(w.l)}</div></div></div>`).join('');
+  $('#wl').innerHTML=list.map(w=>`<div class="row" data-i="${w.i}"><button class="pb" data-p="${w.i}">▶</button><div class="body"><span class="wd">${html(w.w)}</span><span class="tag">${esc(w.p)}</span><a class="nt" href="#">注</a>${w.ms?`<div class="ms">${html(w.ms)}</div>`:''}<div class="nb">${esc(w.m)} · ${lesTxt(w.l)}</div></div></div>`).join('');
   wItems=[...$('#wl').children].map(el=>({el,mu:W[el.dataset.i].w,w:W[el.dataset.i]}));
   wItems.forEach(it=>{if(/[㐀-鿿]/.test(it.mu)===false)it.mu=it.w.r});
 }
